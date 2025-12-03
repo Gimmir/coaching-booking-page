@@ -80,7 +80,7 @@
         }
     </style>
 </head>
-<body class="antialiased selection:bg-white/20 selection:text-white">
+<body class="antialiased selection:bg-white/20 selection:text-white flex flex-col items-center">
 
     <!-- Navigation (Wide container) -->
     <nav class="fixed w-full top-0 left-0 bg-[#0a0a0a]/90 backdrop-blur-lg z-50 border-b border-white/5">
@@ -201,7 +201,7 @@
             </div>
 
             <!-- Calendar Container -->
-            <!-- min-h-[700px] ensures enough height for the 3-column view without scrolling -->
+            <!-- min-h-[750px] ensures enough height for the 3-column view without scrolling -->
             <div class="w-full relative min-h-[750px] border border-white/5 rounded-xl overflow-hidden bg-[#0f0f0f]">
                 <div style="width:100%; height:100%;" id="my-cal-inline-free-1-1-coaching-call"></div>
             </div>
@@ -211,12 +211,12 @@
 
     <!-- Translations & Logic Script -->
     <script>
-        // --- CAL.COM INIT SCRIPT ---
-        (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+        // ==========================================
+        // CONTENT MANAGEMENT SYSTEM (CMS)
+        // Edit the text below to update the website.
+        // ==========================================
         
-        Cal("init", "free-1-1-coaching-call", {origin:"https://app.cal.com"});
-
-        const translations = {
+        const CONTENT_DATABASE = {
             en: {
                 nav_cta: "1:1 Coaching",
                 hero_title: "You’re <span class='text-metal font-normal'>winning</span> in life,<br class='hidden md:inline'> <span class='text-white/40'>but your body isn’t.</span>",
@@ -232,46 +232,52 @@
                 offer_desc: "I coach high-performing men (30s & 40s) to rebuild a strong, athletic, pain-free body in 90 days.",
                 offer_action: "Reclaim Your Athletic Identity",
                 booking_title: "Application",
-                booking_sub: "Select a time for your strategy call"
+                booking_sub: "Select a time for your strategy call",
+                
+                // CALENDAR LINK (ENGLISH)
+                calendar_link: "quentinrandis/free-1-1-coaching-call" 
             },
+            
             fr: {
                 nav_cta: "Coaching 1:1",
-                // FIXED: Used &nbsp; to prevent awkward breaks like "VIE," alone on a line.
-                // The structure is now designed to fill the wider container more evenly.
-                hero_title: "Vous <span class='text-metal font-normal'>réussissez</span> dans&nbsp;la&nbsp;vie,<br class='hidden md:inline'> <span class='text-white/40'>mais votre corps ne&nbsp;suit&nbsp;plus.</span>",
-                hero_p1: "Vous performez au travail. Vous dirigez. Vous gérez la pression.",
-                hero_p3: "Mais physiquement ? Vous sentez le déclin.",
-                prob_1: "Force en baisse.",
-                prob_2: "Énergie en chute.",
-                prob_3: "Plus de gras autour de la taille.",
-                prob_5: "Vieilles blessures. Moins de confiance.",
-                insight_hook: "Vous savez que vous valez mieux que ça — votre corps ne suit plus vos standards.",
-                insight_reality: "Ce n'est pas de la paresse. C'est parce que votre vie a évolué. Votre entraînement non.",
+                // Note: &nbsp; is a "non-breaking space" to prevent bad word wrapping
+                hero_title: "Tu <span class='text-metal font-normal'>réussis</span> dans ta&nbsp;vie…<br class='hidden md:inline'> <span class='text-white/40'>mais ton corps raconte une&nbsp;autre&nbsp;histoire.</span>",
+                hero_p1: "Tu es performant au boulot, fiable pour ta famille, solide dans tout ce que tu entreprends.",
+                hero_p3: "Mais physiquement ? Tu sens que tu déclines.",
+                prob_1: "Tu manques de force.",
+                prob_2: "Ton énergie n’est plus la même.",
+                prob_3: "Ton ventre s’installe.",
+                prob_5: "Tes douleurs apparaissent là où avant tu étais indestructible.",
+                insight_hook: "Tu sais que tu vaux mieux que ça. Ton corps ne reflète plus l’homme que tu es devenu.",
+                insight_reality: "Pas par paresse. Pas par manque de volonté. Mais parce que ta vie aujourd’hui n’a plus rien à voir avec celle d'avant.",
                 offer_title: "La Reconstruction en 90 Jours",
-                offer_desc: "Je coache des hommes performants (30-40 ans) pour reconstruire un corps athlétique, fort et sans douleur en 90 jours.",
-                offer_action: "Réveillez votre identité athlétique",
-                booking_title: "Candidature",
-                booking_sub: "Sélectionnez un créneau pour votre appel stratégique"
+                offer_desc: "Je coach les hommes ambitieux de 30–45 ans — ceux qui bossent dur, gèrent beaucoup, portent beaucoup — à redevenir forts, mobiles et athlétiques en 90 jours, avec une méthode faite pour leur réalité (pas pour celle d’un gamin de 20 ans sans responsabilités).",
+                offer_action: "Tu n’as pas perdu ton potentiel. Il a juste besoin d’être réactivé.",
+                booking_title: "Coaching 1:1",
+                booking_sub: "Réserve ton appel offert",
+                
+                // CALENDAR LINK (FRENCH)
+                calendar_link: "quentinrandis/free-1-1-coaching-call" 
             }
         };
+
+        // ==========================================
+        // SYSTEM LOGIC (DO NOT EDIT BELOW)
+        // ==========================================
+
+        // --- CAL.COM INIT SCRIPT ---
+        (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+        
+        Cal("init", "free-1-1-coaching-call", {origin:"https://app.cal.com"});
 
         function loadCalendar(lang) {
             const container = document.getElementById("my-cal-inline-free-1-1-coaching-call");
             if (!container) return;
             
-            // 1. ПОСИЛАННЯ ДЛЯ АНГЛІЙСЬКОЇ ВЕРСІЇ
-            const linkEn = "quentinrandis/free-1-1-coaching-call";
+            // Get link from DATABASE
+            let link = CONTENT_DATABASE[lang].calendar_link;
 
-            // 2. ПОСИЛАННЯ ДЛЯ ФРАНЦУЗЬКОЇ ВЕРСІЇ
-            const linkFr = "quentinrandis/free-1-1-coaching-call";
-
-            let link;
-            if (lang === 'fr') {
-                link = linkFr;
-            } else {
-                link = linkEn;
-            }
-
+            // Add lang param for interface translation
             link += "?lang=" + lang;
 
             Cal.ns["free-1-1-coaching-call"]("inline", {
@@ -286,14 +292,16 @@
         function setLanguage(lang) {
             document.documentElement.lang = lang;
 
+            // Update Text from DATABASE
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
+                if (CONTENT_DATABASE[lang][key]) {
+                    el.innerHTML = CONTENT_DATABASE[lang][key];
                 }
             });
 
+            // Update Buttons
             const btnEn = document.getElementById('btn-en');
             const btnFr = document.getElementById('btn-fr');
 
