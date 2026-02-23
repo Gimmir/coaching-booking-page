@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coaching | Performance</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif'],
+                    },
+                    colors: {
+                        background: '#0a0a0a',
+                        surface: '#141414',
+                        primary: '#ffffff',
+                        secondary: '#9CA3AF',
+                        accent: '#3b82f6',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #e5e5e5;
+        }
+        
+        /* Premium Metal Gradient */
+        .text-metal {
+            background: linear-gradient(135deg, #ffffff 0%, #93c5fd 50%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Subtle Glow */
+        .glow-spot {
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+        }
+        
+        /* Custom List Bullet */
+        .list-accent::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #ef4444; 
+            margin-right: 12px;
+            transform: rotate(45deg);
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-white/20 selection:text-white flex flex-col items-center">
+
+    <!-- Navigation (Wide container) -->
+    <nav class="fixed w-full top-0 left-0 bg-[#0a0a0a]/90 backdrop-blur-lg z-50 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-16 md:h-20 flex justify-end items-center">
+            
+            <div class="flex items-center gap-4 md:gap-6 text-xs font-bold font-sans tracking-widest uppercase">
+                <div class="flex gap-2 items-center text-white/40">
+                    <button onclick="setLanguage('en')" id="btn-en" class="hover:text-white transition-colors">EN</button>
+                    <span>/</span>
+                    <button onclick="setLanguage('fr')" id="btn-fr" class="hover:text-white transition-colors">FR</button>
+                </div>
+                
+                <!-- CTA Button -->
+                <a href="#booking" class="inline-flex items-center justify-center px-3 py-1.5 md:px-5 md:py-2 bg-white text-black hover:bg-gray-200 transition-all text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] whitespace-nowrap" data-i18n="nav_cta">
+                    1:1 Coaching
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Wrapper -->
+    <div class="w-full flex flex-col items-center">
+
+        <!-- Main Content -->
+        <main class="w-full px-6 pt-28 md:pt-40 relative hyphens-auto flex flex-col items-center">
+            
+            <!-- Subtle Background Glow -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] md:h-[800px] glow-spot pointer-events-none -z-10"></div>
+
+            <!-- Hero (WIDER CONTAINER) -->
+            <section class="mb-24 md:mb-40 text-center opacity-0 animate-fade-in w-full max-w-5xl">
+                <h1 class="font-display font-medium text-4xl md:text-7xl uppercase leading-tight md:leading-[1.1] mb-8 md:mb-12 tracking-wide mx-auto" data-i18n="hero_title">
+                    <!-- Text inserted by JS -->
+                </h1>
+                
+                <div class="space-y-8 text-secondary text-lg md:text-2xl font-light leading-relaxed max-w-3xl mx-auto">
+                    <p data-i18n="hero_p1"></p>
+                    <div class="w-px h-8 md:h-12 bg-gradient-to-b from-white/0 via-white/20 to-white/0 mx-auto"></div>
+                    <p class="text-white font-normal" data-i18n="hero_p3"></p>
+                </div>
+            </section>
+
+            <!-- The List -->
+            <section class="mb-24 md:mb-40 opacity-0 animate-fade-in w-full max-w-4xl" style="animation-delay: 0.2s;">
+                <div class="grid gap-px bg-white/5 border border-white/5 overflow-hidden rounded-lg">
+                    <div class="bg-[#0f0f0f] p-6 md:p-10 hover:bg-[#141414] transition-colors duration-500">
+                        <div class="flex items-baseline gap-6">
+                            <span class="text-red-500/80 text-sm font-mono shrink-0">01</span>
+                            <span class="text-lg md:text-2xl text-gray-300 font-light" data-i18n="prob_1"></span>
+                        </div>
+                    </div>
+                    <div class="bg-[#0f0f0f] p-6 md:p-10 hover:bg-[#141414] transition-colors duration-500">
+                        <div class="flex items-baseline gap-6">
+                            <span class="text-red-500/80 text-sm font-mono shrink-0">02</span>
+                            <span class="text-lg md:text-2xl text-gray-300 font-light" data-i18n="prob_2"></span>
+                        </div>
+                    </div>
+                    <div class="bg-[#0f0f0f] p-6 md:p-10 hover:bg-[#141414] transition-colors duration-500">
+                        <div class="flex items-baseline gap-6">
+                            <span class="text-red-500/80 text-sm font-mono shrink-0">03</span>
+                            <span class="text-lg md:text-2xl text-gray-300 font-light" data-i18n="prob_3"></span>
+                        </div>
+                    </div>
+                    <div class="bg-[#0f0f0f] p-6 md:p-10 hover:bg-[#141414] transition-colors duration-500">
+                        <div class="flex items-baseline gap-6">
+                            <span class="text-red-500/80 text-sm font-mono shrink-0">04</span>
+                            <span class="text-lg md:text-2xl text-gray-300 font-light" data-i18n="prob_5"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- The Shift -->
+            <section class="mb-24 md:mb-40 relative opacity-0 animate-fade-in w-full max-w-4xl" style="animation-delay: 0.4s;">
+                <div class="text-center mx-auto">
+                    <p class="font-display text-2xl md:text-4xl mb-8 md:mb-12 text-white font-normal uppercase leading-snug max-w-3xl mx-auto" data-i18n="insight_hook">
+                    </p>
+                    <div class="inline-flex flex-col items-center gap-4">
+                        <p class="text-secondary font-light text-base md:text-lg px-4" data-i18n="insight_reality"></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- The Offer -->
+            <section class="mb-24 md:mb-40 opacity-0 animate-fade-in w-full max-w-5xl" style="animation-delay: 0.6s;">
+                <div class="bg-gradient-to-b from-white/5 to-transparent p-1 rounded-2xl">
+                    <div class="bg-[#0a0a0a] rounded-xl p-8 md:p-20 text-center border border-white/5 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-6 opacity-20">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M0 0H40V1H0V0Z" fill="white"/><path d="M39 0V40H40V0H39Z" fill="white"/></svg>
+                        </div>
+
+                        <h2 class="font-display font-medium text-3xl md:text-5xl mb-6 md:mb-8 uppercase tracking-wide text-white" data-i18n="offer_title"></h2>
+                        
+                        <p class="text-secondary mb-10 md:mb-14 leading-relaxed text-lg md:text-xl max-w-2xl mx-auto font-light" data-i18n="offer_desc"></p>
+                        
+                        <div class="inline-block border-b border-blue-500/50 pb-1">
+                            <p class="text-white text-sm md:text-base tracking-widest uppercase" data-i18n="offer_action"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Coach (IMAGE + TEXT) -->
+            <section class="mb-24 md:mb-40 opacity-0 animate-fade-in w-full max-w-6xl" style="animation-delay: 0.7s;">
+                <div class="grid md:grid-cols-12 gap-10 items-center">
+                    
+                    <!-- IMAGE COLUMN (Replaces empty space) -->
+                    <div class="md:col-span-5 order-first md:order-first">
+                        <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-[#141414] border border-white/5 group">
+                            <!-- PLACEHOLDER IMAGE: Replace the src below with your photo file path -->
+                            <!-- UPDATED CLASS: object-top, visible color on mobile, grayscale only on desktop (md:) -->
+                            <img src="me.jpeg" 
+                                 alt="Coach" 
+                                 class="w-full h-full object-cover object-top transition-all duration-500 opacity-100 grayscale-0 md:opacity-80 md:grayscale md:group-hover:opacity-100 md:group-hover:grayscale-0">
+                            
+                            <!-- Optional overlay gradient -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none"></div>
+                        </div>
+                    </div>
+
+                    <!-- TEXT COLUMN -->
+                    <div class="md:col-span-7 border-l-2 border-white/10 pl-6 md:pl-12 py-4">
+                        <h3 class="font-display font-medium text-2xl md:text-3xl mb-8 uppercase tracking-wide text-white" data-i18n="about_title"></h3>
+                        
+                        <div class="space-y-6 text-secondary text-base md:text-lg leading-relaxed font-light">
+                            <p data-i18n="about_p1"></p>
+                            <p data-i18n="about_p2"></p>
+                            <p data-i18n="about_p3" class="text-white font-normal"></p>
+                            <p data-i18n="about_p4"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Booking Section (MAX WIDTH 7XL for full desktop calendar) -->
+        <section id="booking" class="w-full max-w-7xl px-4 md:px-6 pb-20 opacity-0 animate-fade-in" style="animation-delay: 0.8s;">
+            <div class="mb-10 md:mb-16 text-center">
+                <h2 class="font-display font-normal text-xl md:text-3xl uppercase mb-3 md:mb-4 tracking-wider" data-i18n="booking_title"></h2>
+                <p class="text-secondary text-[10px] md:text-sm uppercase tracking-widest" data-i18n="booking_sub"></p>
+            </div>
+
+            <!-- Calendar Container -->
+            <div class="w-full relative min-h-[750px] border border-white/5 rounded-xl overflow-hidden bg-[#0f0f0f]">
+                <div style="width:100%; height:100%;" id="my-cal-inline-free-1-1-coaching-call"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Translations & Logic Script -->
+    <script>
+        // ==========================================
+        // CONTENT MANAGEMENT SYSTEM (CMS)
+        // Edit the text below to update the website.
+        // ==========================================
+        
+        const CONTENT_DATABASE = {
+            en: {
+                nav_cta: "1:1 Coaching",
+                hero_title: "You’re <span class='text-metal font-normal'>winning</span> in life,<br class='hidden md:inline'> <span class='text-white/40'>but your body isn’t.</span>",
+                hero_p1: "You perform at work. You lead. You handle pressure.",
+                hero_p3: "But physically? You feel the decline.",
+                prob_1: "Strength dropped.",
+                prob_2: "Energy dipped.",
+                prob_3: "More fat around the waist.",
+                prob_5: "Old injuries louder. Confidence lower.",
+                insight_hook: "You know you can do better — your body just isn’t matching your standards anymore.",
+                insight_reality: "It's not laziness. It's because your life has evolved. Your training hasn't.",
+                offer_title: "The 90-Day Reconstruction",
+                offer_desc: "I coach high-performing men (30s & 40s) to rebuild a strong, athletic, pain-free body in 90 days.",
+                offer_action: "Reclaim Your Athletic Identity",
+                
+                // About Section EN
+                about_title: "Meet Your Coach: The Architect of The Executive Body Blueprint",
+                about_p1: "My journey to optimizing the elite physique didn't start in a boardroom—it started on the gridiron. As a former American Football Player who transitioned into the highly disciplined world of competitive bodybuilding, I learned the power of extreme performance.",
+                about_p2: "But after 12 years of coaching and living in global hubs like New York City, Sydney, and London, I realized the traditional grind doesn't work for high-performers. The 10-hour-per-week gym routine is a myth, and it’s a waste of your valuable time.",
+                about_p3: "I took the raw power of the Athletic Methodology—the system that gave me my best physique—and reverse-engineered it specifically for the busy professional.",
+                about_p4: "My commitment is simple: I give you the precision system to regain your strength, your energy, and your competitive edge, all without sacrificing your career or your family. I've done it for myself, and I have spent the last decade perfecting it for leaders like you.",
+
+                booking_title: "Application",
+                booking_sub: "Select a time for your strategy call",
+                
+                // CALENDAR LINK (ENGLISH)
+                calendar_link: "quentinrandis/free-1-1-coaching-call" 
+            },
+            
+            fr: {
+                nav_cta: "Coaching 1:1",
+                // Note: &nbsp; is a "non-breaking space" to prevent bad word wrapping
+                hero_title: "Tu <span class='text-metal font-normal'>réussis</span> dans ta&nbsp;vie…<br class='hidden md:inline'> <span class='text-white/40'>mais ton corps raconte une&nbsp;autre&nbsp;histoire.</span>",
+                hero_p1: "Tu es performant au boulot, fiable pour ta famille, solide dans tout ce que tu entreprends.",
+                hero_p3: "Mais physiquement ? Tu sens que tu déclines.",
+                prob_1: "Tu manques de force.",
+                prob_2: "Ton énergie n’est plus la même.",
+                prob_3: "Ton ventre s’installe.",
+                prob_5: "Tes douleurs apparaissent là où avant tu étais indestructible.",
+                insight_hook: "Tu sais que tu vaux mieux que ça. Ton corps ne reflète plus l’homme que tu es devenu.",
+                insight_reality: "Pas par paresse. Pas par manque de volonté. Mais parce que ta vie aujourd’hui n’a plus rien à voir avec celle d'avant.",
+                offer_title: "La Reconstruction en 90 Jours",
+                offer_desc: "Je coach les hommes ambitieux de 30–45 ans — ceux qui bossent dur, gèrent beaucoup, portent beaucoup — à redevenir forts, mobiles et athlétiques en 90 jours, avec une méthode faite pour leur réalité (pas pour celle d’un gamin de 20 ans sans responsabilités).",
+                offer_action: "Tu n’as pas perdu ton potentiel. Il a juste besoin d’être réactivé.",
+                
+                // About Section FR
+                about_title: "Ton Coach : L'Expertise Athlétique au Service de Ta Performance",
+                about_p1: "Mon parcours n'est pas celui d'un coach de salle classique. Mes débuts en tant qu'ancien joueur de football américain, suivis d'une immersion dans la discipline rigoureuse de la musculation, m'ont appris une chose : la performance demande de l'efficacité.",
+                about_p2: "Fort de 12 ans d'expérience et d'une vie de coach passé entre New York, Sydney et Londres, j'ai constaté que le modèle \"tout ou rien\" du fitness traditionnel mène à l'épuisement.",
+                about_p3: "J'ai extrait la quintessence de la méthode athlétique — celle qui m'a donné, à moi et à mes coachés, notre meilleur physique — pour la rendre compatible avec ta charge de travail. J'ai développé un système qui te permet de t'entraîner efficacement sans gaspiller 10 heures par semaine à la salle.",
+                about_p4: "Je ne te vends pas un programme, je t'offre la maîtrise et la stratégie d'un expert international pour que tu puisses retrouver un physique fort et pérenne.",
+
+                booking_title: "Candidature",
+                booking_sub: "Réserve ton appel offert",
+                
+                // CALENDAR LINK (FRENCH)
+                calendar_link: "quentinrandis/30min-fr" 
+            }
+        };
+
+        // ==========================================
+        // SYSTEM LOGIC (DO NOT EDIT BELOW)
+        // ==========================================
+
+        // --- CAL.COM INIT SCRIPT ---
+        (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+        
+        Cal("init", "free-1-1-coaching-call", {origin:"https://app.cal.com"});
+
+        function loadCalendar(lang) {
+            const container = document.getElementById("my-cal-inline-free-1-1-coaching-call");
+            if (!container) return;
+            
+            // CLEAR CONTAINER to prevent same calendar from persisting
+            container.innerHTML = "";
+
+            // Get link from DATABASE
+            let link = CONTENT_DATABASE[lang].calendar_link;
+
+            // Add lang param for interface translation
+            link += "?lang=" + lang;
+
+            Cal.ns["free-1-1-coaching-call"]("inline", {
+                elementOrSelector:"#my-cal-inline-free-1-1-coaching-call",
+                config: {"theme":"dark"},
+                calLink: link,
+            });
+
+            Cal.ns["free-1-1-coaching-call"]("ui", {"hideEventTypeDetails":false, "theme":"dark"});
+        }
+
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+
+            // Update Text from DATABASE
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (CONTENT_DATABASE[lang][key]) {
+                    el.innerHTML = CONTENT_DATABASE[lang][key];
+                }
+            });
+
+            // Update Buttons
+            const btnEn = document.getElementById('btn-en');
+            const btnFr = document.getElementById('btn-fr');
+
+            if (lang === 'en') {
+                btnEn.className = "text-white font-bold transition-all";
+                btnFr.className = "text-white/40 hover:text-white transition-colors";
+            } else {
+                btnFr.className = "text-white font-bold transition-all";
+                btnEn.className = "text-white/40 hover:text-white transition-colors";
+            }
+
+            loadCalendar(lang);
+        }
+
+        function initLanguage() {
+            const userLang = navigator.language || navigator.userLanguage; 
+            if (userLang && userLang.toLowerCase().startsWith('fr')) {
+                setLanguage('fr');
+            } else {
+                setLanguage('en');
+            }
+        }
+
+        initLanguage();
+
+    </script>
+</body>
+</html>
