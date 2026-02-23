@@ -1,8 +1,3 @@
 {
-  "version": 2,
-  "name": "couching-meeting-page",
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
+  "framework": "nextjs"
 }
