@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athletic Reset — Athletic Way</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0A0A0A;
+            --white: #FAFAFA;
+            --red: #F33E4C;
+            --red-dark: #D42E3C;
+            --gray-100: #F0F0F0;
+            --gray-200: #E0E0E0;
+            --gray-300: #B0B0B0;
+            --gray-600: #6B6B6B;
+            --gray-800: #1A1A1A;
+            --gray-900: #111111;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.7;
+            font-weight: 300;
+            overflow-x: hidden;
+        }
+
+        /* ====== UTILITY ====== */
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .container--wide {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .red { color: var(--red); }
+        .bold { font-weight: 600; }
+
+        .section-dark {
+            background: var(--black);
+            padding: 100px 0;
+        }
+
+        .section-darker {
+            background: var(--gray-900);
+            padding: 100px 0;
+        }
+
+        .section-red {
+            background: var(--red);
+            padding: 80px 0;
+        }
+
+        /* ====== TOPBAR ====== */
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 0;
+            background: rgba(10,10,10,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .topbar-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--red);
+        }
+
+        .topbar-cta {
+            display: inline-block;
+            padding: 10px 28px;
+            background: var(--red);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .topbar-cta:hover {
+            background: var(--red-dark);
+            transform: translateY(-1px);
+        }
+
+        /* ====== HERO ====== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 140px 24px 100px;
+            position: relative;
+            background: radial-gradient(ellipse at 50% 0%, rgba(243,62,76,0.08) 0%, transparent 60%),
+                        var(--black);
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(to bottom, transparent, var(--black));
+        }
+
+        .hero-eyebrow {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 5px;
+            color: var(--red);
+            margin-bottom: 32px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            line-height: 0.95;
+            letter-spacing: 2px;
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.15s forwards;
+        }
+
+        .hero h1 em {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--red);
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--gray-300);
+            max-width: 580px;
+            margin: 0 auto 48px;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.3s forwards;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 18px 56px;
+            background: var(--red);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.45s forwards;
+        }
+
+        .hero-cta:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(243,62,76,0.3);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.6s forwards;
+        }
+
+        .hero-scroll span {
+            display: block;
+            width: 1px;
+            height: 48px;
+            background: linear-gradient(to bottom, var(--red), transparent);
+            margin: 0 auto;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ====== VIDEO SECTION ====== */
+        .video-section {
+            padding: 0 0 80px;
+            margin-top: -40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .video-wrapper {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: var(--gray-900);
+            border: 1px solid rgba(255,255,255,0.06);
+            overflow: hidden;
+        }
+
+        .video-container video,
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--gray-900);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover {
+            background: var(--gray-800);
+        }
+
+        .video-play-btn {
+            width: 72px;
+            height: 72px;
+            border: 2px solid var(--red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover .video-play-btn {
+            background: var(--red);
+            transform: scale(1.05);
+        }
+
+        .video-play-btn::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 0 10px 18px;
+            border-color: transparent transparent transparent var(--red);
+            margin-left: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover .video-play-btn::after {
+            border-color: transparent transparent transparent var(--white);
+        }
+
+        .video-play-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            color: var(--gray-300);
+            text-transform: uppercase;
+        }
+
+        .video-caption {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        /* ====== TESTIMONIAL PHOTOS ====== */
+        .testimonial-photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255,255,255,0.06);
+            overflow: hidden;
+        }
+
+        .testimonial-photo {
+            aspect-ratio: 3/4;
+            background: var(--gray-800);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-photo-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 8px 12px;
+            background: linear-gradient(to top, rgba(10,10,10,0.9), transparent);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .testimonial-photo-label.before { color: var(--gray-300); }
+        .testimonial-photo-label.after { color: var(--red); }
+
+        .testimonial-photo-placeholder {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            text-align: center;
+            padding: 16px;
+        }
+
+        .testimonial-avatar-img {
+            width: 48px;
+            height: 48px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ====== PAIN SECTION ====== */
+        .pain-block {
+            border-left: 2px solid var(--red);
+            padding-left: 32px;
+            margin-bottom: 40px;
+        }
+
+        .pain-block p {
+            font-size: 1.1rem;
+            color: var(--gray-300);
+            margin-bottom: 16px;
+        }
+
+        .section-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 5px;
+            color: var(--red);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            line-height: 1;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+        }
+
+        .section-title em {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--red);
+        }
+
+        .body-text {
+            font-size: 1.05rem;
+            color: var(--gray-300);
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+
+        .body-text strong {
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        /* ====== PROBLEM SECTION ====== */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2px;
+            margin-top: 48px;
+        }
+
+        .problem-card {
+            background: var(--gray-800);
+            padding: 40px 32px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            background: rgba(243,62,76,0.06);
+        }
+
+        .problem-card::before {
+            content: attr(data-number);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: rgba(243,62,76,0.15);
+            position: absolute;
+            top: 16px;
+            right: 24px;
+        }
+
+        .problem-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .problem-card p {
+            font-size: 0.95rem;
+            color: var(--gray-300);
+            line-height: 1.7;
+        }
+
+        /* ====== MECHANISM SECTION ====== */
+        .mechanism-intro {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .mechanism-intro .body-text {
+            max-width: 640px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .phase-card {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 32px;
+            margin-bottom: 48px;
+            padding: 40px;
+            background: var(--gray-900);
+            border: 1px solid rgba(255,255,255,0.04);
+            transition: all 0.3s ease;
+        }
+
+        .phase-card:hover {
+            border-color: rgba(243,62,76,0.2);
+        }
+
+        .phase-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            color: var(--red);
+            line-height: 1;
+        }
+
+        .phase-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: var(--gray-600);
+            text-transform: uppercase;
+        }
+
+        .phase-content h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .phase-weeks {
+            font-size: 0.8rem;
+            color: var(--red);
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .phase-content p {
+            font-size: 0.95rem;
+            color: var(--gray-300);
+            line-height: 1.8;
+        }
+
+        /* ====== ANTI-DERAILLEMENT ====== */
+        .anti-derail {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .anti-derail-box {
+            background: linear-gradient(135deg, rgba(243,62,76,0.08), rgba(243,62,76,0.02));
+            border: 1px solid rgba(243,62,76,0.15);
+            padding: 56px 48px;
+            margin-top: 40px;
+        }
+
+        .anti-derail-box h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .anti-derail-box p {
+            font-size: 1rem;
+            color: var(--gray-300);
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ====== TESTIMONIALS ====== */
+        .testimonial {
+            padding: 48px;
+            margin-bottom: 32px;
+            border: 1px solid rgba(255,255,255,0.06);
+            position: relative;
+            background: var(--gray-800);
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            color: rgba(243,62,76,0.2);
+            position: absolute;
+            top: -10px;
+            left: 24px;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            color: var(--gray-300);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .testimonial-text strong {
+            color: var(--white);
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .testimonial-name {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-detail {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+
+        /* ====== OFFER SECTION ====== */
+        .offer-box {
+            background: var(--gray-900);
+            border: 2px solid rgba(243,62,76,0.3);
+            padding: 64px 48px;
+            text-align: center;
+        }
+
+        .offer-includes {
+            text-align: left;
+            max-width: 560px;
+            margin: 40px auto;
+        }
+
+        .offer-item {
+            display: grid;
+            grid-template-columns: 20px 1fr auto;
+            gap: 16px;
+            align-items: start;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .offer-check {
+            color: var(--red);
+            font-weight: 600;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .offer-item-name {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .offer-item-value {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            text-decoration: line-through;
+        }
+
+        .offer-total {
+            margin: 40px 0 16px;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            text-decoration: line-through;
+        }
+
+        .offer-price {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4.5rem;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .offer-price span {
+            font-size: 2rem;
+            color: var(--gray-300);
+        }
+
+        .offer-split {
+            font-size: 0.95rem;
+            color: var(--gray-300);
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 64px;
+            background: var(--red);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(243,62,76,0.3);
+        }
+
+        .cta-subtext {
+            margin-top: 16px;
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+
+        /* ====== GUARANTEE ====== */
+        .guarantee-box {
+            background: var(--gray-800);
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 48px;
+            text-align: center;
+            margin-top: 64px;
+        }
+
+        .guarantee-icon {
+            width: 64px;
+            height: 64px;
+            border: 2px solid var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 1.5rem;
+        }
+
+        .guarantee-box h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .guarantee-box p {
+            font-size: 0.95rem;
+            color: var(--gray-300);
+            line-height: 1.8;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* ====== COACH SECTION ====== */
+        .coach-section {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .coach-image {
+            aspect-ratio: 3/4;
+            background: var(--gray-800);
+            border: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .coach-image-placeholder {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            color: var(--gray-600);
+            text-transform: uppercase;
+        }
+
+        .coach-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .coach-stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--red);
+            line-height: 1;
+        }
+
+        .coach-stat-label {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* ====== FAQ ====== */
+        .faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 32px 0;
+            cursor: pointer;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.05rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--red);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--red);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 16px;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .faq-answer-inner {
+            padding-top: 20px;
+            font-size: 0.95rem;
+            color: var(--gray-300);
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        /* ====== FINAL CTA ====== */
+        .final-cta {
+            text-align: center;
+            padding: 120px 0;
+            position: relative;
+            background: radial-gradient(ellipse at 50% 100%, rgba(243,62,76,0.1) 0%, transparent 60%),
+                        var(--black);
+        }
+
+        .final-cta h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        .final-cta h2 em {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--red);
+        }
+
+        .final-cta p {
+            font-size: 1.1rem;
+            color: var(--gray-300);
+            max-width: 520px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        /* ====== FOOTER ====== */
+        .footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+
+        .footer a {
+            color: var(--gray-300);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: var(--red);
+        }
+
+        /* ====== SEPARATOR ====== */
+        .separator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            gap: 16px;
+        }
+
+        .separator-line {
+            width: 40px;
+            height: 1px;
+            background: var(--red);
+        }
+
+        .separator-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--red);
+        }
+
+        /* ====== MID CTA BANNER ====== */
+        .mid-cta-text {
+            font-size: 1.3rem;
+            font-weight: 500;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .mid-cta-text a {
+            color: var(--white);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-weight: 600;
+        }
+
+        .mid-cta-text a:hover {
+            text-decoration-color: var(--white);
+        }
+
+        /* ====== RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            .section-dark,
+            .section-darker {
+                padding: 64px 0;
+            }
+
+            .coach-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .coach-image {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .testimonial-photo {
+                aspect-ratio: 1/1;
+            }
+
+            .video-section {
+                margin-top: -20px;
+                padding-bottom: 48px;
+            }
+
+            .phase-card {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                padding: 32px 24px;
+            }
+
+            .offer-box {
+                padding: 40px 24px;
+            }
+
+            .testimonial {
+                padding: 32px 24px;
+            }
+
+            .anti-derail-box {
+                padding: 40px 24px;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 120px 24px 80px;
+            }
+
+            .cta-button {
+                padding: 18px 40px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ====== SCROLL ANIMATIONS ====== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOPBAR -->
+    <nav class="topbar">
+        <div class="topbar-inner">
+            <a href="#" class="logo">ATHLETIC <span>WAY</span></a>
+            <a href="#offre" class="topbar-cta">Rejoindre le programme</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div>
+            <p class="hero-eyebrow">Programme de transformation · 90 jours</p>
+            <h1>T'AS UN TAF QUI TOURNE<br>ET UN CORPS QUI<br>NE SUIT <em>PLUS.</em></h1>
+            <p class="hero-sub">Tu enchaînes les calls de 8h à 19h, tu manges un sandwich devant ton écran, et le soir t'as juste l'énergie de t'écrouler dans le canapé. Tu te couches en te disant "demain je m'y mets". Demain, rebelote.<br><br><strong>En 90 jours, ça s'arrête.</strong> 3 séances de 60 minutes par semaine.</p>
+            <a href="#offre" class="hero-cta">Démarrer ma transformation</a>
+        </div>
+        <div class="hero-scroll">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- VIDEO SECTION -->
+    <section class="video-section">
+        <div class="video-wrapper">
+            <div class="video-container">
+                <!-- 
+                    OPTION 1 — Vidéo hébergée directement :
+                    <video controls poster="video-thumbnail.jpg">
+                        <source src="ta-video.mp4" type="video/mp4">
+                    </video>
+                    
+                    OPTION 2 — YouTube/Vimeo embed :
+                    <iframe src="https://www.youtube.com/embed/TON_ID" frameborder="0" allowfullscreen></iframe>
+                    
+                    OPTION 3 — Placeholder (actuel) — supprimer une fois ta vidéo prête :
+                -->
+                <div class="video-placeholder" id="videoPlaceholder">
+                    <div class="video-play-btn"></div>
+                    <span class="video-play-label">Regarde cette vidéo — 4 min</span>
+                </div>
+            </div>
+            <p class="video-caption">Quentin t'explique pourquoi l'Athletic Reset est différent de tout ce que tu as essayé.</p>
+        </div>
+    </section>
+
+    <!-- PAIN SECTION -->
+    <section class="section-dark">
+        <div class="container reveal">
+            <p class="section-label">Sois honnête avec toi-même</p>
+            <h2 class="section-title">C'EST TOI,<br><em>MOT POUR MOT.</em></h2>
+
+            <div class="pain-block">
+                <p>Tu te réveilles à 6h30, déjà fatigué. Tu bois ton café debout en checkant tes mails. À 9h t'es en call. À 12h tu manges un truc vite fait devant ton écran. À 19h tu rentres vidé. Le canapé gagne. <strong>Tous les soirs.</strong> Tu te couches en te disant "demain je m'y mets". Demain, même histoire.</p>
+            </div>
+
+            <div class="pain-block">
+                <p>Ce week-end, tu as essayé de jouer 15 minutes avec tes gamins. Tu étais essoufflé. T'as eu mal au dos le lendemain. T'as vu une photo de toi à la plage l'été dernier et tu ne t'es pas reconnu. <strong>Ce mec là, c'est pas toi.</strong> Pas celui que tu es dans ta tête.</p>
+            </div>
+
+            <div class="pain-block">
+                <p>Le truc qui te rend dingue ? Tu gères une boîte, des équipes, des budgets, des deadlines. <strong>T'es discipliné dans tout.</strong> Mais sur ton corps, tu galères depuis des mois — peut-être des années. Tu as essayé la salle, les programmes YouTube, les apps. Ça tient 3 semaines et ça s'effondre.</p>
+            </div>
+
+            <p class="body-text" style="margin-top: 40px;">Si tu viens de lire ça en te disant <strong>"putain c'est exactement moi"</strong> — ce programme a été construit pour toi. Pas pour un profil vague d'homme de 35 ans. Pour toi, spécifiquement.</p>
+        </div>
+    </section>
+
+    <!-- WHY YOU FAILED -->
+    <section class="section-darker">
+        <div class="container--wide reveal">
+            <div style="text-align:center; margin-bottom: 48px;">
+                <p class="section-label">Ce n'est pas un problème de motivation</p>
+                <h2 class="section-title">POURQUOI TU AS <em>ÉCHOUÉ</em><br>JUSQU'ICI</h2>
+                <p class="body-text" style="max-width:600px; margin: 0 auto;">Ce n'est pas ta faute. Les solutions que tu as essayées n'étaient tout simplement pas conçues pour ta vie.</p>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem-card" data-number="01">
+                    <h3>LES PROGRAMMES DE GAMINS</h3>
+                    <p>Splits sur 5 jours, 90 minutes par séance, zéro flexibilité. Conçus pour des mecs de 22 ans qui vivent dans une salle de sport. Tu rates lundi ? T'as raté le jour pecs, tant pis. Aucune adaptation. C'est pas fait pour toi.</p>
+                </div>
+                <div class="problem-card" data-number="02">
+                    <h3>LE FITNESS INSTAGRAM</h3>
+                    <p>Si tu voulais un coach qui te file un PDF et te dit de compter tes macros, tu serais pas ici. Tu veux pas juste être "musclé" — tu veux sprinter avec tes gamins, bouger sans douleur, te sentir puissant. Les abdos sur Instagram ça intéresse pas ta vie.</p>
+                </div>
+                <div class="problem-card" data-number="03">
+                    <h3>LA NUTRITION "MEAL PREP"</h3>
+                    <p>Tu manges au resto avec des clients mardi. Tu voyages jeudi. T'as un dîner samedi. Et on te demande de peser 150g de poulet avec 200g de riz ? Sérieusement ? Les plans nutrition rigides sont faits pour des gens qui contrôlent chaque repas. Pas pour toi.</p>
+                </div>
+                <div class="problem-card" data-number="04">
+                    <h3>ZÉRO PLAN B</h3>
+                    <p>C'est LE problème. Ta semaine explose — urgence au taf, gosse malade, voyage imprévu. Ton programme ne prévoit rien. Tu rates, tu culpabilises, tu lâches. 3 semaines de motivation → 1 semaine de merde → abandon. À chaque fois.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MID CTA -->
+    <section class="section-red">
+        <div class="container" style="text-align:center;">
+            <p class="mid-cta-text">Tu n'as pas un problème de volonté.<br><strong>Tu as un problème de système.</strong><br>Et un système, ça se délègue à quelqu'un qui sait le construire.</p>
+        </div>
+    </section>
+
+    <!-- THE METHOD -->
+    <section class="section-dark">
+        <div class="container reveal">
+            <div class="mechanism-intro">
+                <p class="section-label">La méthode Athletic Reset</p>
+                <h2 class="section-title">3 PHASES.<br>90 JOURS.<br>UN CORPS D'<em>ATHLÈTE.</em></h2>
+                <p class="body-text">L'Athletic Reset combine musculation fonctionnelle, mobilité et travail athlétique en un système progressif en 3 phases. Chaque phase construit sur la précédente. Chaque séance dure 60 minutes. 3 fois par semaine. Le reste du temps, tu vis ta vie.</p>
+            </div>
+
+            <div class="phase-card">
+                <div>
+                    <div class="phase-number">01</div>
+                    <div class="phase-label">Phase</div>
+                </div>
+                <div class="phase-content">
+                    <h3>RÉACTIVATION</h3>
+                    <p class="phase-weeks">Semaines 1 à 4</p>
+                    <p>On réveille ton corps. Mobilité articulaire, fondations de mouvement, activation musculaire profonde. Dès la semaine 2, tu dors mieux, tu as plus d'énergie, et tu sens que quelque chose a changé. C'est le moment où tu te dis : <strong>"Ok, ça c'est différent de tout ce que j'ai fait avant."</strong></p>
+                </div>
+            </div>
+
+            <div class="phase-card">
+                <div>
+                    <div class="phase-number">02</div>
+                    <div class="phase-label">Phase</div>
+                </div>
+                <div class="phase-content">
+                    <h3>CONSTRUCTION</h3>
+                    <p class="phase-weeks">Semaines 5 à 8</p>
+                    <p>L'intensité monte. Functional bodybuilding, travail de puissance, séances plus denses. C'est là que le physique commence à changer visiblement. Tu regagnes de la masse musculaire, tu perds du gras, et surtout <strong>tu sens la force revenir</strong>. Ta femme le remarque. Tes collègues commentent.</p>
+                </div>
+            </div>
+
+            <div class="phase-card">
+                <div>
+                    <div class="phase-number">03</div>
+                    <div class="phase-label">Phase</div>
+                </div>
+                <div class="phase-content">
+                    <h3>PERFORMANCE</h3>
+                    <p class="phase-weeks">Semaines 9 à 12</p>
+                    <p>On pousse. Tu fais des choses que tu pensais impossibles. Sprint, explosivité, endurance — ton corps répond à nouveau. C'est la phase où tu prends des vidéos de toi-même parce que <strong>tu es bluffé par ce que tu peux faire</strong>. Plus rapide, plus fort, plus mobile qu'il y a 10 ans.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANTI-DERAILLEMENT -->
+    <section class="section-darker">
+        <div class="container reveal">
+            <div class="anti-derail">
+                <p class="section-label">Ce qui change tout</p>
+                <h2 class="section-title">LE SYSTÈME<br><em>ANTI-DÉRAILLEMENT</em></h2>
+                <p class="body-text" style="max-width:600px; margin: 0 auto 0;">C'est ça qui te manquait. C'est ça qui fait que cette fois, tu ne lâcheras pas.</p>
+
+                <div class="anti-derail-box">
+                    <h3>QUAND TA SEMAINE EXPLOSE, LE PROGRAMME S'ADAPTE.</h3>
+                    <p>Réunion qui déborde ? Déplacement imprévu ? Nuit blanche avec un gosse malade ? Au lieu de culpabiliser et de tout abandonner, tu as un protocole de secours : des séances courtes de 20 minutes, des ajustements automatiques, un plan B structuré pour chaque situation. Le programme survit à ta vie — pas l'inverse. <strong>C'est la raison principale pour laquelle mes clients tiennent quand tous les autres programmes échouent.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ATHLETIC TEST TEASER -->
+    <section class="section-dark">
+        <div class="container reveal" style="text-align:center;">
+            <p class="section-label">Mesure tes progrès</p>
+            <h2 class="section-title">LE TEST <em>ATHLÉTIQUE</em></h2>
+            <p class="body-text" style="max-width:600px; margin: 0 auto 24px;">Pas de promesses vagues. Des chiffres. En début et fin de programme, tu passes un test standardisé : force, mobilité, endurance, explosivité. Tu te filmes. Tu compares. Les résultats parlent d'eux-mêmes.</p>
+            <p class="body-text" style="max-width:600px; margin: 0 auto;"><strong>Ce n'est pas juste une photo avant/après. C'est une preuve objective de ce que ton corps est redevenu capable de faire.</strong></p>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section-darker">
+        <div class="container reveal">
+            <div style="text-align:center; margin-bottom: 64px;">
+                <p class="section-label">Ceux qui l'ont vécu</p>
+                <h2 class="section-title">ILS ONT FAIT<br>L'<em>ATHLETIC RESET</em></h2>
+            </div>
+
+            <div class="testimonial">
+                <div class="testimonial-photo-grid">
+                    <div class="testimonial-photo">
+                        <!-- Remplace par : <img src="quentin-before.jpg" alt="Quentin avant"> -->
+                        <span class="testimonial-photo-placeholder">Photo avant</span>
+                        <span class="testimonial-photo-label before">Avant</span>
+                    </div>
+                    <div class="testimonial-photo">
+                        <!-- Remplace par : <img src="quentin-after.jpg" alt="Quentin après"> -->
+                        <span class="testimonial-photo-placeholder">Photo après</span>
+                        <span class="testimonial-photo-label after">Après · 90 jours</span>
+                    </div>
+                </div>
+                <p class="testimonial-text"><strong>J'ai fait plus de progrès en quelques mois qu'en des années à m'entraîner seul.</strong> J'ai perdu 12 kg de masse grasse, construit du muscle et amélioré ma force, mon endurance et ma mobilité. Mais le plus important, c'est le changement mental : confiance, constance, fierté. Chaque détail de la programmation est pensé pour progresser sans se perdre ni s'épuiser. La structure m'a aidé à me lever tôt, à mieux manger, à rester discipliné. Je recommande à toute personne qui veut un système sérieux et durable.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">Q.</div>
+                    <!-- Quand tu as sa photo : remplace le div ci-dessus par :
+                    <img class="testimonial-avatar-img" src="quentin-avatar.jpg" alt="Quentin"> -->
+                    <div>
+                        <div class="testimonial-name">Quentin</div>
+                        <div class="testimonial-detail">-12kg de masse grasse · Force, endurance et mobilité transformées</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial">
+                <div class="testimonial-photo-grid">
+                    <div class="testimonial-photo">
+                        <!-- Remplace par : <img src="jb-before.jpg" alt="JB avant"> -->
+                        <span class="testimonial-photo-placeholder">Photo avant</span>
+                        <span class="testimonial-photo-label before">Avant</span>
+                    </div>
+                    <div class="testimonial-photo">
+                        <!-- Remplace par : <img src="jb-after.jpg" alt="JB après"> -->
+                        <span class="testimonial-photo-placeholder">Photo après</span>
+                        <span class="testimonial-photo-label after">Après · 90 jours</span>
+                    </div>
+                </div>
+                <p class="testimonial-text">J'ai été séduit par l'alliance entre musculation et mobilité — c'est exactement ce que je cherchais. <strong>La variété des exercices garde la motivation intacte.</strong> Tout est intelligemment structuré : on progresse et les mouvements évoluent tout en gardant les bases essentielles. Des sauts, des mouvements explosifs qui ont boosté ma mobilité. Le coaching m'a permis de corriger rapidement ma technique. Quentin insiste sur la vision long terme : une progression durable, pas un sprint qui mène au burnout.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">JB</div>
+                    <!-- Quand tu as sa photo : remplace le div ci-dessus par :
+                    <img class="testimonial-avatar-img" src="jb-avatar.jpg" alt="Jean-Baptiste"> -->
+                    <div>
+                        <div class="testimonial-name">Jean-Baptiste</div>
+                        <div class="testimonial-detail">Musculation + mobilité · Progression durable</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial">
+                <div class="testimonial-photo-grid">
+                    <div class="testimonial-photo">
+                        <!-- Remplace par : <img src="tim-before.jpg" alt="Tim avant"> -->
+                        <span class="testimonial-photo-placeholder">Photo avant</span>
+                        <span class="testimonial-photo-label before">Avant</span>
+                    </div>
+                    <div class="testimonial-photo">
+                        <!-- Remplace par : <img src="tim-after.jpg" alt="Tim après"> -->
+                        <span class="testimonial-photo-placeholder">Photo après</span>
+                        <span class="testimonial-photo-label after">Après · 90 jours</span>
+                    </div>
+                </div>
+                <p class="testimonial-text"><strong>Après avoir testé de nombreux formats sans résultats durables, j'ai enfin trouvé un système qui fonctionne.</strong> Avant, mes progrès étaient freinés par des douleurs aux épaules, aux coudes et au dos. Depuis que je suis cette programmation, mon physique, mes performances et mon mental ont évolué. Le format full body travaille force, mobilité, explosivité et endurance de manière intelligente. J'ai longtemps pensé qu'il était impossible de tout développer en même temps — cette méthode m'a prouvé le contraire.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">T.</div>
+                    <!-- Quand tu as sa photo : remplace le div ci-dessus par :
+                    <img class="testimonial-avatar-img" src="tim-avatar.jpg" alt="Tim"> -->
+                    <div>
+                        <div class="testimonial-name">Tim</div>
+                        <div class="testimonial-detail">Douleurs chroniques éliminées · Force + mobilité + endurance</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COACH SECTION -->
+    <section class="section-dark">
+        <div class="container--wide reveal">
+            <div class="coach-section">
+                <div class="coach-image">
+                    <span class="coach-image-placeholder">— Ta photo ici —</span>
+                </div>
+                <div>
+                    <p class="section-label">Ton coach</p>
+                    <h2 class="section-title">QUENTIN<br><em>RANDIS</em></h2>
+                    <p class="body-text">Ancien joueur de football américain. Plus de 10 ans de coaching entre les États-Unis, l'Australie et l'Angleterre. J'ai construit ma méthode à l'intersection du monde athlétique et de la musculation fonctionnelle — loin des splits classiques et des programmes copiés-collés.</p>
+                    <p class="body-text">Je ne suis pas un coach de 24 ans qui vit dans une salle de sport. Je gère un business, je voyage, j'ai des contraintes. <strong>Je comprends ta vie parce que je vis la même.</strong> Et c'est pour ça que mon système est conçu pour survivre au quotidien d'un homme qui a autre chose à faire que de passer 2 heures par jour en salle.</p>
+                    <div class="coach-stats">
+                        <div>
+                            <div class="coach-stat-number">10+</div>
+                            <div class="coach-stat-label">Années de coaching</div>
+                        </div>
+                        <div>
+                            <div class="coach-stat-number">3</div>
+                            <div class="coach-stat-label">Pays</div>
+                        </div>
+                        <div>
+                            <div class="coach-stat-number">250+</div>
+                            <div class="coach-stat-label">Athlètes coachés</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFER -->
+    <section class="section-darker" id="offre">
+        <div class="container reveal">
+            <div style="text-align:center; margin-bottom: 48px;">
+                <p class="section-label">L'offre</p>
+                <h2 class="section-title">TOUT CE QUI EST<br><em>INCLUS</em></h2>
+            </div>
+
+            <div class="offer-box">
+                <p class="section-label" style="margin-bottom:8px;">Athletic Reset — 90 jours</p>
+                <h3 style="font-family:'Bebas Neue',sans-serif; font-size:2rem; letter-spacing:1px; margin-bottom:8px;">TA TRANSFORMATION COMPLÈTE</h3>
+                <p style="font-size:0.9rem; color:var(--gray-300);">Tout ce dont tu as besoin pour retrouver un corps d'athlète.</p>
+
+                <div class="offer-includes">
+                    <div class="offer-item">
+                        <span class="offer-check">✓</span>
+                        <span class="offer-item-name">Programme Athletic Reset 3 phases — 12 semaines de séances structurées et progressives (3x60min/sem)</span>
+                        <span class="offer-item-value">900€</span>
+                    </div>
+                    <div class="offer-item">
+                        <span class="offer-check">✓</span>
+                        <span class="offer-item-name">Système Anti-Déraillement — protocoles de secours pour les semaines chaotiques</span>
+                        <span class="offer-item-value">400€</span>
+                    </div>
+                    <div class="offer-item">
+                        <span class="offer-check">✓</span>
+                        <span class="offer-item-name">Cadre nutritionnel flexible — principes simples adaptés à ta vie, sans régime rigide</span>
+                        <span class="offer-item-value">300€</span>
+                    </div>
+                    <div class="offer-item">
+                        <span class="offer-check">✓</span>
+                        <span class="offer-item-name">Suivi hebdomadaire personnalisé — check-in, ajustements et feedback chaque semaine</span>
+                        <span class="offer-item-value">600€</span>
+                    </div>
+                    <div class="offer-item">
+                        <span class="offer-check">✓</span>
+                        <span class="offer-item-name">Test Athlétique complet — bilan d'entrée et de sortie filmé avec scores objectifs</span>
+                        <span class="offer-item-value">200€</span>
+                    </div>
+                    <div class="offer-item">
+                        <span class="offer-check">✓</span>
+                        <span class="offer-item-name">Kit de démarrage physique — ta game card personnalisée avec tes objectifs</span>
+                        <span class="offer-item-value">—</span>
+                    </div>
+                    <div class="offer-item">
+                        <span class="offer-check">✓</span>
+                        <span class="offer-item-name">Graduation Athletic Reset — vidéo récap + visuel de tes résultats</span>
+                        <span class="offer-item-value">—</span>
+                    </div>
+                </div>
+
+                <div style="font-size: 0.9rem; color: #B0B0B0; text-align: center; margin-bottom: 32px; padding: 16px 24px; background: rgba(243,62,76,0.06); border: 1px solid rgba(243,62,76,0.1);">
+                    <strong style="color: #FAFAFA;">Dès ton inscription :</strong> questionnaire d'onboarding personnalisé + appel de lancement de 30 min avec Quentin pour démarrer immédiatement.
+                </div>
+
+                <p class="offer-total">Valeur totale : 2 400€</p>
+                <div class="offer-price">997<span>€</span></div>
+                <p class="offer-split">ou 3 × 367€ — Paiement sécurisé</p>
+
+                <a href="#" class="cta-button">REJOINDRE L'ATHLETIC RESET</a>
+                <p class="cta-subtext">Places limitées — 10 clients max par cohorte</p>
+            </div>
+
+            <!-- GUARANTEE -->
+            <div class="guarantee-box">
+                <div class="guarantee-icon">↻</div>
+                <h3>GARANTIE "RÉSULTATS OU ON CONTINUE"</h3>
+                <p>Si après 90 jours tes scores athlétiques n'ont pas significativement progressé et que tu as suivi au moins 80% du programme, je continue à te coacher gratuitement jusqu'à ce que les résultats soient là. Je m'engage sur tes résultats parce que je sais que mon système fonctionne.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-dark">
+        <div class="container reveal">
+            <div style="text-align:center; margin-bottom: 48px;">
+                <p class="section-label">Questions</p>
+                <h2 class="section-title">TU HÉSITES <em>ENCORE</em> ?</h2>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>J'ai vraiment pas le temps, entre le taf et la famille…</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">3 séances de 60 minutes par semaine. C'est 3h sur 168 heures. Et quand ta semaine explose, le système Anti-Déraillement prend le relais avec des séances courtes de 30 minutes. Ce programme est littéralement conçu pour les semaines de merde.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>997€ c'est cher pour du coaching en ligne…</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Ça fait 11€ par jour. Moins qu'un déjeuner. Et contrairement à l'abonnement salle que tu paies sans y aller, ici tu as un coach, un système, un suivi, et une garantie de résultats. La vraie question c'est : combien te coûte une année de plus dans un corps qui ne te ressemble pas ?</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>J'ai besoin de quel matériel ?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Le programme s'adapte à ton matériel. Accès à une salle de sport idéalement, mais des variantes existent pour un setup maison avec le minimum. On en discute au démarrage pour adapter la programmation à ton environnement.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Et si je voyage souvent pour le travail ?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">C'est exactement pour ça que le système Anti-Déraillement existe. Des séances "hôtel" avec zéro matériel, des protocoles de mobilité pour les jours de transit. Le programme ne s'arrête pas quand tu prends l'avion — il s'adapte.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Je suis débutant / j'ai des blessures, c'est adapté ?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Le programme est individualisé. La phase 1 "Réactivation" est conçue pour repartir de zéro si nécessaire — mobilité, fondations, patterns de mouvement. Si tu as des blessures, on adapte chaque mouvement. Tim, un de mes clients, avait des douleurs chroniques aux épaules et au dos. Elles ont disparu.</div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Comment se passe le suivi concrètement ?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">Un check-in hebdomadaire asynchrone. Tu m'envoies tes retours (sensations, questions, vidéos si besoin), j'analyse et j'ajuste ta programmation. Pas d'appels interminables qui bloquent ton agenda. Efficace, direct, adapté à ton rythme.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <p class="section-label">C'est le moment</p>
+            <h2>ARRÊTE D'ATTENDRE<br>LE BON <em>MOMENT.</em></h2>
+            <p>Le bon moment c'était il y a 5 ans. Le deuxième meilleur moment, c'est maintenant. Dans 90 jours, tu peux être dans la meilleure forme de ta vie — ou exactement au même point qu'aujourd'hui.</p>
+            <a href="#offre" class="cta-button">DÉMARRER L'ATHLETIC RESET — 997€</a>
+            <p class="cta-subtext">ou 3 × 367€ · Places limitées · Garantie résultats</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p style="margin-bottom: 8px;"><a href="https://instagram.com/quentinrandis" target="_blank">@quentinrandis</a></p>
+            <p>© 2025 Athletic Way · Tous droits réservés</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                const wasActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!wasActive) item.classList.add('active');
+            });
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
